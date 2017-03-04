@@ -1,7 +1,77 @@
 <!doctype html>
 <html>
-<head></head>
+
+<head>
+    <title>The Jewelry Shop</title>
+    <link rel="stylesheet" href="./dist/styles/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
 <body>
-    asdfkdasaslasdf;dkfj
+    <header class="container">
+        <a class="logo" href="#"><img src="./images/Logo for Jewelry Shop.png"></a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Gallery</a></li>
+            </ul>
+        </nav>
+        <input type="text" name="search" placeholder="Search...">
+    </header>
+    <div id="heroRotator" class="container hero rotator">
+        <a href="#" class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <div class="rotator-wrapper">
+            <ul>
+                <li class="slide0"><img class="sm-12" src="./images/Bracelets/Drusy-Quartz-Solar-Quartz-Stone-Druzy-Bracelet-665485.jpg" alt="hero"></li>
+                <li class="slide1"><img class="sm-12" src="./images/Necklaces/quartznecklace.jpg" alt="hero"></li>
+                <li class="slide2"><img class="sm-12" src="./images/Rings/rings.jpg" alt="hero"></li>
+            </ul>
+        </div>
+
+        <a href="#" class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="container">
+        <div class="row callout-cont">
+            <div class="col sm-12 md-6 lg-3 text-center callout">
+                <img src="./images/Earrings/Fashion-Decoration-Earrings-Jewelry-Hummingbird-331724.jpg" alt="Callout1">
+                <h2>New Arrivals</h2>
+            </div>
+            <div class="col sm-12 md-6 lg-3 text-center callout">
+                <img src="./images/Bracelets/Drusy-Quartz-Solar-Quartz-Stone-Druzy-Bracelet-665485.jpg" alt="Callout2">
+                <h2>Gallery</h2>
+            </div>
+            <div class="col sm-12 md-6 lg-3 text-center callout">
+                <img src="./images/Rings/ring.jpg" alt="Callout3">
+                <h2>About Us</h2>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col sm-12 lg-6">
+                <h1>Feature 1</h1>
+            </div>
+            <div class="col sm-12 lg-6">
+                <div>
+                    <h1>Feature 2</h1>
+                </div>
+                <div>
+                    <h1>Feature 3</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/0908bc8b51.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="scripts/jquery.rotator.js"></script>
+    <script>
+        $(function () {
+            $("#heroRotator").Rotator();
+        });
+    </script>
+
 </body>
+
 </html>
