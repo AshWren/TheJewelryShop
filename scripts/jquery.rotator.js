@@ -1,10 +1,10 @@
 ; (function($){
-    console.log("task");
+
     $.fn.Rotator = function(options){
         var defaults = {
             container: ".rotator-wrapper",
             animationduration: 1000,
-            slideWidth: 960
+            slideWidth: $(".rotator-wrapper").width()
         };
 
         options = $.extend(defaults, options);
@@ -15,9 +15,11 @@
 
         var _init = function () {
             slideCount = elm.find(options.container).children().children().length;
-            elm.find(options.container).children().width(slideCount * options.slideWidth);
+            var width = elm.find(options.container).children().width(slideCount * options.slideWidth);
+
             _bindEvents();
             _togglePager();
+
         };
 
         var _bindEvents = function () {
