@@ -21,12 +21,20 @@
     </header>
     <div id="heroRotator" class="container hero rotator">
         <a href="#" class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-        <div class="rotator-wrapper">
+        <div class="rotator-wrapper slider">
             <ul>
-                <li class="slide0"><img class="sm-12" src="./images/Bracelets/Drusy-Quartz-Solar-Quartz-Stone-Druzy-Bracelet-665485.jpg" alt="hero"></li>
-                <li class="slide1"><img class="sm-12" src="./images/Necklaces/quartznecklace.jpg" alt="hero"></li>
-                <li class="slide2"><img class="sm-12" src="./images/Rings/rings.jpg" alt="hero"></li>
+                <li class="slide"><img class="sm-12" src="./images/Bracelets/Drusy-Quartz-Solar-Quartz-Stone-Druzy-Bracelet-665485.jpg" alt="hero"></li>
+                <li class="slide"><img class="sm-12" src="./images/Necklaces/quartznecklace.jpg" alt="hero"></li>
+                <li class="slide"><img class="sm-12" src="./images/Rings/rings.jpg" alt="hero"></li>
             </ul>
+        </div>
+        <div class="wrapper page">
+            <div class="container">
+                <div class="pager">
+                </div>
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div>
         </div>
 
         <a href="#" class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -51,10 +59,10 @@
     
     <script src="https://use.fontawesome.com/0908bc8b51.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="scripts/jquery.rotator.js"></script>
+    <script src="scripts/jquery.slider.js"></script>
     <script>
         $(function () {
-            $("#heroRotator").Rotator();
+            $("#heroRotator").Slider();
         });
     </script>
 
