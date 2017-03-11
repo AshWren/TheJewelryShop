@@ -1,10 +1,13 @@
-; (function($){
-console.log("task");
+;console.log("task"); (function($){
+
     $.fn.Slider = function (options){
-        var defaults = {
+        var settings = $.extend({
+            delay:  5000,
+            duration: 500,
             offset: 0,
             current: 0,
             transition: "fade",
+            auto: true,
             slider: ".slider",
             slide: ".slide",
             pager: ".pager", 
@@ -13,37 +16,38 @@ console.log("task");
             slideNext: ".next", 
             slidePrev: ".prev",
             activeClass: "active",
-        };
+            transparent: false
+        }, options);
         
-        options = $.extend(defaults, options);
+      
 
 
         //setup
         var elm = $(this),
             pageIndex = 0,
             slideCount = 0;
-        var slider = elm.find(options.slider);
-        var slides = elm.find(options.slide);
-        var pageNext = elm.find(options.slideNext);
-        var pagePrev = elm.find(options.slidePrev);
-        var pager = elm.find(options.pager);
-        var curr = options.current;
+        var slider = elm.find(settings.slider);
+        var slides = elm.find(settings.slide);
+        var pageNext = elm.find(settings.slideNext);
+        var pagePrev = elm.find(settings.slidePrev);
+        var pager = elm.find(settings.pager);
+        var curr = settings.current;
         var next = curr;
         
         var sliding = false; //huh?
 
         //controls
         slides.each(function(index){
-            if (typeof options.pagerBuilder !== 'undefined' && $.isFunction(options.pagerBuilder)){
-                pager.append(options.pagerBuilder(index));
+            if (typeof settings.pagerBuilder !== 'undefined' && $.isFunction(settings.pagerBuilder)){
+                pager.append(settings.pagerBuilder(index));
             }else {
-                pager.append('<'+options.pagerTag+'></'+options.pagerTag+'>');
+                pager.append('<'+settings.pagerTag+'></'+settings.pagerTag+'>');
             }
         });
 
-        pager.find(options.pagerTag).first().addClass(options.activeClass);
+        pager.find(settings.pagerTag).first().addClass(settings.activeClass);
 
-        pager.on('click', options.pagerTag, function(){
+        pager.on('click', settings.pagerTag, function(){
             if($(this).index() != curr) {
                 sliderTransition($(this).index());
             }
@@ -89,10 +93,10 @@ console.log("task");
                 }
 
                 //slider setup
-                pager.find(options.pagerTag).removeClass(options.activeClass);
-                pager.find(options.pagerTag+":nth-child("+ (next + 1) + ")").addClass(options.activeClass);
+                pager.find(settings.pagerTag).removeClass(settings.activeClass);
+                pager.find(settings.pagerTag+":nth-child("+ (next + 1) + ")").addClass(settings.activeClass);
 
-                if(options.transition == "slide") {
+                if(settings.transition == "slide") {
                     var w = slides.eq(curr).width();
                     var h = slides.eq(curr).height();
 
@@ -101,17 +105,17 @@ console.log("task");
                     slides.attr('style', 'display:none; position:absolute; width: 100%;');
 
                     slides.eq(curr).css('left', '0px').show();
-                    slides.eq(next).css('left', ((forward) ? '' : '-') + (w + options.offset) + 'px').show();
+                    slides.eq(next).css('left', ((forward) ? '' : '-') + (w + settings.offset) + 'px').show();
 
-                     slides.eq(curr).transition({ left: ((forward) ? '-' : '') + w + 'px' }, options.duration, 'easeInOutQuad', function () {
+                     slides.eq(curr).transition({ left: ((forward) ? '-' : '') + w + 'px' }, settings.duration, 'easeInOutQuad', function () {
                         slides.eq(curr).attr('style', 'position:relative;').hide();
                     });
-                        slides.eq(next).transition({ left: '0px' }, options.duration, 'easeInOutQuad', function () {
+                        slides.eq(next).transition({ left: '0px' }, settings.duration, 'easeInOutQuad', function () {
                         slider.attr('style', 'position:relative;');
                         slides.eq(next).attr('style', 'position:relative; display:block;');
                         curr = next;
                         sliding = false;
-                        if (options.auto) { interval = setInterval(function () { sliderTransition(); }, options.delay); }
+                        if (settings.auto) { interval = setInterval(function () { sliderTransition(); }, settings.delay); }
                     });  
                 }else{
                      slider.attr('style', 'height:' + slider.height() + 'px; position:relative; z-index:1;');
@@ -119,13 +123,13 @@ console.log("task");
                     slides.eq(curr).css('zIndex', '1').css('opacity', '1');
                     slides.eq(next).css('zIndex', '2').css('opacity', '0');
                     
-                    if (options.transparent) { slides.eq(curr).transition({ opacity: 0 }, options.duration, 'easeInOutQuad'); }
-                    slides.eq(next).transition({ opacity: 1 }, options.duration, 'easeInOutQuad', function () {                    
+                    if (settings.transparent) { slides.eq(curr).transition({ opacity: 0 }, settings.duration, 'easeInOutQuad'); }
+                    slides.eq(next).transition({ opacity: 1 }, settings.duration, 'easeInOutQuad', function () {                    
                         curr = next;
                         sliding = false;
                         slider.attr('style', 'position:relative; z-index:1;');
                         slides.eq(curr).attr('style', 'position:relative; display:block; opacity:1; z-index:2;');
-                        if (options.auto) { interval = setInterval(function () { sliderTransition(); }, options.delay); }
+                        if (settings.auto) { interval = setInterval(function () { sliderTransition(); }, settings.delay); }
                     });
                 }
             }
